@@ -39,3 +39,26 @@ export interface Recommendation {
   image: string;
   location: string;
 }
+
+export interface Activity {
+  id: string;
+  title: string;
+  type: "attraction" | "restaurant" | "accommodation";
+  location: string;
+  time: string;
+  duration: string;
+  cost: number;
+  image?: string;
+}
+
+export interface TimeSlot {
+  id: string;
+  time: string;
+  activity?: Activity;
+}
+
+export interface DayPlan {
+  id: string;
+  date: string;
+  timeSlots: TimeSlot[];
+}
