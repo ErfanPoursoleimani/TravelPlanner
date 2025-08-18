@@ -23,7 +23,7 @@ const MobileNavbar: React.FC = () => {
   ]
 
   return (
-    <nav className="bg-white md:hidden shadow-lg min-h-15 flex justify-between px-10 items-stretch w-[100vw] fixed bottom-0 z-50">
+    <nav className="bg-white md:hidden shadow-lg min-h-15 flex justify-evenly items-stretch w-[100vw] fixed bottom-0 z-50">
       {navLinks.map((navLink) => (
         <div onClick={() => navigate(navLink.href)} key={navLink.id} className={`${isActive(navLink.href) ? "text-gray-800" : "text-gray-600"} flex flex-col justify-evenly py-3 items-center`}>
           {isActive(navLink.href) ? navLink.selectedIcon : navLink.unselectedIcon}

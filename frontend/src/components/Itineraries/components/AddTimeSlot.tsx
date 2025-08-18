@@ -15,29 +15,46 @@ const AddTimeSlot = ({setDays, days, activeDay, setIsAddingTimeSlot, isAddingTim
 		}
 	}, [isAddingTimeSlot]);
 
-    const handleAddTimeSlot = () => {
-        days.filter((day) => day.id === activeDay.id)[0].timeSlots.push(
-            {id: Math.random().toString(), time: `${selectedHour} ${selectedTimeMode}`}
-        )
-        setDays([
-            ...days.filter((day) => (day.id !== activeDay.id)), 
-            {
-                id: activeDay.id,
-                date: activeDay.date,
-                timeSlots: [
-                    ...activeDay.timeSlots,
-                    {id: Math.random().toString(), time: `${selectedHour} ${selectedTimeMode}`}
-                ].sort((a, b) => 
-                        a.time.slice(a.time.length - 2, a.time.length) === 'PM' 
-                        ? parseInt(a.time.slice(0, 2)) + 12 
-                        : parseInt(a.time.slice(0, 2)) 
-                        - (a.time.slice(b.time.length - 2, b.time.length) === 'PM' 
-                        ? parseInt(b.time.slice(0, 2)) + 12 
-                        : parseInt(b.time.slice(0, 2)) )),
-            }
-        ])
-        setSelectedHour("")
-        setSelectedTimeMode("AM")
+    const handleInputValue = (e: any) => {
+        const value = e.target.value;
+        if(value === ""){
+            setSelectedHour('')
+            return
+        }
+
+        if (!/^\d+$/.test(value)) {
+            return; // Don't update if non-digits are entered
+        }
+
+        const numValue = parseInt(value);
+    
+        // Check constraints
+        if (numValue >= 1 && numValue <= 12) {
+        setSelectedHour(value);
+        }
+    }
+
+    const handleAddTimeSlot = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === 'Enter') {
+            setDays([
+                ...days.filter((day) => (day.id !== activeDay.id)), 
+                {
+                    id: activeDay.id,
+                    date: activeDay.date,
+                    timeSlots: [
+                        ...activeDay.timeSlots,
+                        {id: Math.random().toString(), time: `${selectedHour} ${selectedTimeMode}`}
+                    ].sort((a, b) => 
+                            a.time.slice(a.time.length - 2, a.time.length) === 'PM' 
+                            ? parseInt(a.time.slice(0, 2)) + 12 
+                            : parseInt(a.time.slice(0, 2)) 
+                            - (a.time.slice(b.time.length - 2, b.time.length) === 'PM' 
+                            ? parseInt(b.time.slice(0, 2)) + 12 
+                            : parseInt(b.time.slice(0, 2)) )),
+                }
+            ])
+            setIsAddingTimeSlot(false)
+        }
     }
   return (
     <div className='rounded-[7px] bg-gray-100'>
@@ -45,12 +62,10 @@ const AddTimeSlot = ({setDays, days, activeDay, setIsAddingTimeSlot, isAddingTim
             <div className='flex justify-between items-center'>
             <span className='flex gap-2 items-center'>
                 <FaRegClock />
-                <form onSubmit={handleAddTimeSlot}>
-                    <input onChange={(e) => setSelectedHour(e.currentTarget.value)} ref={inputRef} type="text" className='bg-white w-15 px-2 min-h-10 border-1 rounded-[7px] outline-0 border-gray-200 font-medium'/>
-                </form>
+                <input onKeyDown={handleAddTimeSlot} value={selectedHour} onChange={(e) => handleInputValue(e)} ref={inputRef} type="text" className='bg-white w-15 px-2 min-h-10 border-1 rounded-[7px] outline-0 border-gray-200 font-medium'/>
                 <ul className='flex gap-1'>
-                <li onClick={() => setSelectedTimeMode("AM")} className={`${selectedTimeMode === "AM" ? "bg-black border-0 text-white" : ""} px-2 py-1 border-1 font-medium text-[0.9rem] rounded-[5px] border-gray-300`}>AM</li>
-                <li onClick={() => setSelectedTimeMode("PM")} className={`${selectedTimeMode === "PM" ? "bg-black border-0 text-white" : ""} px-2 py-1 border-1 font-medium text-[0.9rem] rounded-[5px] border-gray-300`}>PM</li>
+                    <li onClick={() => setSelectedTimeMode("AM")} className={`${selectedTimeMode === "AM" ? "bg-black border-0 text-white" : ""} px-2 py-1 border-1 font-medium text-[0.9rem] rounded-[5px] border-gray-300`}>AM</li>
+                    <li onClick={() => setSelectedTimeMode("PM")} className={`${selectedTimeMode === "PM" ? "bg-black border-0 text-white" : ""} px-2 py-1 border-1 font-medium text-[0.9rem] rounded-[5px] border-gray-300`}>PM</li>
                 </ul>
             </span>
             <span className='flex items-center space-x-5'>

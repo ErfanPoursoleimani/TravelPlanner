@@ -205,3 +205,5 @@ def update_profile_view(request):
             'success': False,
             'message': 'Profile update failed'
         }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+

@@ -41,7 +41,7 @@ const PopularDestinations = () => {
   return (
     <div className='bottom-to-top-animation text-center flex flex-col items-center gap-7'>
         <h3 className='text-3xl font-bold'>Popular Destinations</h3>
-        <div className='w-full text-start flex gap-5 max-md:gap-2 overflow-x-auto max-w-[1300px]'>
+        <div className='w-full px-2 text-start flex gap-5 max-md:gap-2 overflow-x-auto max-w-[1300px]'>
             {DestinationCards.map((card) => (
             <DestinationCard key={card.id} card={card}/>
             ))}
