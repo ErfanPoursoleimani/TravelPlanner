@@ -93,3 +93,27 @@ Forbidden: /protected/
 Watching for file changes with StatReloader
 Watching for file changes with StatReloader
 Watching for file changes with StatReloader
+Not Found: /
+"GET / HTTP/1.1" 404 3150
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3201
+Not Found: /auth
+"GET /auth HTTP/1.1" 404 3180
+Not Found: /auth/socia;
+"GET /auth/socia; HTTP/1.1" 404 4725
+"GET /auth/social HTTP/1.1" 301 0
+"GET /auth/social/ HTTP/1.1" 302 0
+Not Found: /accounts/login/
+"GET /accounts/login/?next=/auth/social/ HTTP/1.1" 404 3232
+"GET /admin HTTP/1.1" 301 0
+"GET /admin/ HTTP/1.1" 302 0
+"GET /admin/login/?next=/admin/ HTTP/1.1" 200 4173
+"GET /static/admin/css/base.css HTTP/1.1" 200 22120
+"GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2808
+"GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+"GET /static/admin/css/login.css HTTP/1.1" 200 951
+"GET /static/admin/css/responsive.css HTTP/1.1" 200 16565
+"GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+"GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+"POST /admin/login/?next=/admin/ HTTP/1.1" 200 4341
+"POST /admin/login/?next=/admin/ HTTP/1.1" 200 4343
