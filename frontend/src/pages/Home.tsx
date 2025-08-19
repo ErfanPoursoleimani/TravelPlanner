@@ -17,11 +17,11 @@ const Home: React.FC = () => {
         <TripPlanner />
       </AnimatedBox>
 
-      <AnimatedBox threshold={0.3} animation='slideUp' rootMargin='10px'>
+      <AnimatedBox threshold={0.2} animation='slideUp' rootMargin='5px'>
         <PopularDestinations />
       </AnimatedBox>
 
-      <AnimatedBox threshold={0.3} animation='slideUp' rootMargin='10px'>
+      <AnimatedBox threshold={0.2} animation='slideUp' rootMargin='5px'>
         <Commercial />
       </AnimatedBox>
 

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { BiListPlus } from 'react-icons/bi';
 import { IoLocationOutline } from 'react-icons/io5';
 import { RxCross1 } from "react-icons/rx";
-import type { Activity, DayPlan } from "../../types/components";
+import type { /* Activity, */ DayPlan } from "../../types/components";
 import AddTimeSlot from './components/AddTimeSlot';
 import TimeSlot from './components/TimeSlot';
 
@@ -23,7 +23,7 @@ const ItineraryBuilder = () => {
     }
   ]);
 
-const [activities, setActivities] = useState<Activity[]>([
+/* const [activities, setActivities] = useState<Activity[]>([
     {
       id: "activity-1",
       title: "Eiffel Tower",
@@ -62,12 +62,12 @@ const [activities, setActivities] = useState<Activity[]>([
   const [budget, setBudget] = useState({
     total: 1000,
     spent: 87,
-  });
+  }); */
 
   const [activeDay, setActiveDay] = useState(days[0]);
   const [isAddingTimeSlot, setIsAddingTimeSlot] = useState(false)
 
-  const handleDragEnd = (result: any) => {
+  /* const handleDragEnd = (result: any) => {
     if (!result.destination) return;
 
     const { source, destination, draggableId } = result;
@@ -93,7 +93,7 @@ const [activities, setActivities] = useState<Activity[]>([
     destDay.timeSlots.splice(destination.index, 0, movedSlot);
 
     setDays(newDays);
-  };
+  }; */
 
   const handleAddDay = () => {
     const newDayId = `day-${days.length + 1}`;

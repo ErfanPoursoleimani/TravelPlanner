@@ -72,11 +72,11 @@ const Destinations = () => {
     const [isBudgetsOpen, setIsBudgetsOpen] = useState(false)
 
   return (
-    <div className="space-y-10 flex flex-col items-center">
-        <div className="text-black min-h-30 w-full flex flex-col justify-center items-center py-12 px-4 bg-gradient-to-b from-[#ffd2a8] to-[#348d4300]">
+    <div className="space-y-5 flex flex-col items-center">
+        <div className="text-black min-h-30 w-full flex flex-col justify-center items-center py-12 md:py-20 px-4 bg-gradient-to-b from-[#d2ffa8] to-[#348d4300]">
           <div className="max-w-[1300px] w-full">
             <AnimatedBox animation="slideRight" triggerOnce={true} className="flex flex-col gap-5">
-              <h1 className="text-6xl max-md:text-3xl font-bold">Explore Destinations</h1>
+              <h1 className="text-5xl max-md:text-3xl font-bold">Explore Destinations</h1>
               <p className="max-md:text-[1rem] text-gray-500">Discover amazing places around the world and start planning your next adventure.</p>
             </AnimatedBox>
           </div>

@@ -1,21 +1,21 @@
 import { useEffect, useRef, useState } from 'react';
 import { Textarea } from '../Textarea';
 // import Slider from '../Slider'
-import type { Recommendation } from '../../types/components';
+// import type { Recommendation } from '../../types/components';
 import Calendar from '../Calendar';
 import { CiCalendar } from 'react-icons/ci';
 
-const AIRecommendations = ({ onAddToItinerary = () => {} }) => {
+const AIRecommendations = (/* { onAddToItinerary = () => {} } */) => {
   const [preferences, setPreferences] = useState<string>("");
-  const [budget, setBudget] = useState<number[]>([500]);
-  const [loading, setLoading] = useState<boolean>(false);
+  // const [budget, setBudget] = useState<number[]>([500]);
+  // const [loading, setLoading] = useState<boolean>(false);
   const [value, setValue] = useState(50);
 
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const calendarRef = useRef<HTMLDivElement>(null);
 
-  const [recommendations, setRecommendations] = useState<Recommendation[]>([
+  /* const [recommendations, setRecommendations] = useState<Recommendation[]>([
     {
       id: "1",
       type: "attraction",
@@ -52,9 +52,9 @@ const AIRecommendations = ({ onAddToItinerary = () => {} }) => {
         "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&q=80",
       location: "Paris, France",
     },
-  ]);
+  ]); */
 
-  const handleGenerateRecommendations = () => {
+  /* const handleGenerateRecommendations = () => {
     setLoading(true);
     // Simulate API call with dynamic recommendations based on preferences
     setTimeout(() => {
@@ -99,7 +99,7 @@ const AIRecommendations = ({ onAddToItinerary = () => {} }) => {
       setRecommendations(newRecommendations);
       setLoading(false);
     }, 1500);
-  };
+  }; */
 
   //----------------------------------------
 
@@ -204,7 +204,7 @@ const AIRecommendations = ({ onAddToItinerary = () => {} }) => {
             background: `linear-gradient(to right, #000 0%, ${value}%, #d1d5db ${value}%, #d1d5db 100%)`
           }}
         />
-        <div className="flex text-gray-500 justify-between text-xs text-muted-foreground mt-1">
+        <div className="flex text-gray-500 justify-between text-xs mt-1">
           <span>$100</span>
           <span>$1000</span>
         </div>

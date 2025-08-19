@@ -9,17 +9,20 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql'
 ,
-        'NAME': os.environ.get('DB_NAME', 'trip_planner_dev'),
-        'USER': os.environ.get('DB_USER', 'postgres'),
-        'PASSWORD': os.environ.get('DB_PASSWORD', 'password'),
-        'HOST': os.environ.get('DB_HOST', 'localhost'),
-        'PORT': os.environ.get('DB_PORT', '5432'),
+        # 'NAME': os.environ.get('DB_NAME', 'root'),
+        # 'USER': os.environ.get('DB_USER', 'postgres'),
+        # 'PASSWORD': os.environ.get('DB_PASSWORD', 'Erf@npoo85'),
+        # 'HOST': os.environ.get('DB_HOST', 'localhost'),
+        # 'PORT': os.environ.get('DB_PORT', '5432'),
+        'NAME': "tripPlanner",
+        'USER': "tripUser",
+        'PASSWORD': 'Erf@npoo85',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-CORS_ALLOW_ALL_ORIGINS = True
 
 LOGGING = {
     'version': 1,
@@ -55,5 +58,16 @@ WEATHER_API_KEY = os.environ.get('WEATHER_API_KEY')
 BOOKING_API_KEY = os.environ.get('BOOKING_API_KEY')
 
 CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+]
+
+CSRF_EXEMPT_URLS = [
+    r'^/auth/google/$',
+    r'^/auth/github/$',
+]
 
 

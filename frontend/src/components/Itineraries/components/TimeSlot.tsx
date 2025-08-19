@@ -1,4 +1,3 @@
-import { useEffect, useRef } from 'react'
 import { FaRegClock, FaRegTrashAlt } from 'react-icons/fa'
 import type { DayPlan } from '../../../types/components'
 

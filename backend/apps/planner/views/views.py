@@ -1,209 +1,112 @@
-from rest_framework import status
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework_simplejwt.tokens import RefreshToken
-from django.contrib.auth import authenticate
+from rest_framework.authtoken.models import Token
 from django.contrib.auth.models import User
-from django.contrib.auth.hashers import make_password
-from rest_framework_simplejwt.views import TokenObtainPairView
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from google.oauth2 import id_token
+from google.auth.transport import requests as google_requests
+import requests
+from rest_framework.permissions import IsAuthenticated
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 import json
+import logging
 
-# Custom JWT serializer to include user data
-class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
-    def validate(self, attrs):
-        data = super().validate(attrs)
-        # Add custom user data to the response
-        data['user'] = {
-            'id': self.user.id,
-            'username': self.user.username,
-            'email': self.user.email,
-            'first_name': self.user.first_name,
-            'last_name': self.user.last_name,
-        }
-        return data
+class ProtectedView(APIView):
+    permission_classes = [IsAuthenticated]
 
-class LoginView(TokenObtainPairView):
-    """
-    Login view that returns JWT tokens and user data
-    """
-    serializer_class = CustomTokenObtainPairSerializer
-    permission_classes = [AllowAny]
+    def get(self, request):
+        return Response({
+            "message": f"Hello, {request.user.username}! This is a protected endpoint."
+        })
+        
+logger = logging.getLogger(__name__)
 
-    def post(self, request, *args, **kwargs):
+@method_decorator(csrf_exempt, name='dispatch')
+class GoogleLoginView(APIView):
+    authentication_classes = []
+    permission_classes = []
+    
+    def post(self, request):
         try:
-            response = super().post(request, *args, **kwargs)
-            if response.status_code == 200:
-                # Successful login
-                return Response({
-                    'success': True,
-                    'message': 'Login successful',
-                    'access_token': response.data['access'],
-                    'refresh_token': response.data['refresh'],
-                    'user': response.data['user']
-                }, status=status.HTTP_200_OK)
-            else:
-                return response
+            # Debug: Print request data
+            logger.info(f"Request data: {request.data}")
+            logger.info(f"Request body: {request.body}")
+            
+            token = request.data.get("token")
+            if not token:
+                logger.error("No token provided in request")
+                return Response({"error": "Token is required"}, status=400)
+            
+            logger.info(f"Token received: {token[:50]}...")  # Log first 50 chars
+            
+            # Verify the Google token
+            idinfo = id_token.verify_oauth2_token(
+                token, 
+                google_requests.Request(), 
+                "213670148556-dq7i7pqpnmltnt6hdeftn2fl41ljpod2.apps.googleusercontent.com"
+            )
+            
+            logger.info(f"Token verified successfully: {idinfo}")
+            
+            email = idinfo.get("email")
+            if not email:
+                return Response({"error": "Email not found in token"}, status=400)
+            
+            # Create or get user
+            user, created = User.objects.get_or_create(
+                username=email, 
+                defaults={"email": email}
+            )
+            
+            # Create or get token
+            auth_token, _ = Token.objects.get_or_create(user=user)
+            
+            logger.info(f"User authentication successful: {user.email}")
+            
+            return Response({
+                "token": auth_token.key,
+                "user": {
+                    "id": user.id,
+                    "username": user.username,
+                    "email": user.email,
+                },
+                "created": created
+            })
+            
+        except ValueError as e:
+            logger.error(f"ValueError: {str(e)}")
+            return Response({"error": f"Invalid token: {str(e)}"}, status=400)
         except Exception as e:
-            return Response({
-                'success': False,
-                'message': 'Invalid credentials'
-            }, status=status.HTTP_401_UNAUTHORIZED)
+            logger.error(f"Exception: {str(e)}")
+            return Response({"error": f"Authentication failed: {str(e)}"}, status=500)
 
-@api_view(['POST'])
-@permission_classes([AllowAny])
-def register_view(request):
-    """
-    User registration view
-    """
-    try:
-        data = json.loads(request.body)
-        username = data.get('username')
-        email = data.get('email')
-        password = data.get('password')
-        first_name = data.get('first_name', '')
-        last_name = data.get('last_name', '')
+class GitHubLoginView(APIView):
+    def post(self, request):
+        code = request.data.get("code")
 
-        # Validation
-        if not username or not email or not password:
-            return Response({
-                'success': False,
-                'message': 'Username, email, and password are required'
-            }, status=status.HTTP_400_BAD_REQUEST)
+        # 1️⃣ Exchange code for access_token
+        token_url = "https://github.com/login/oauth/access_token"
+        client_id = "Ov23li9UjJEiOsYldolY"
+        client_secret = "243335a3d62bc4bc7ab3f26ee4e2a41e3b98de93"
+        headers = {"Accept": "application/json"}
+        data = {"client_id": client_id, "client_secret": client_secret, "code": code}
 
-        # Check if user already exists
-        if User.objects.filter(username=username).exists():
-            return Response({
-                'success': False,
-                'message': 'Username already exists'
-            }, status=status.HTTP_400_BAD_REQUEST)
+        token_res = requests.post(token_url, headers=headers, data=data)
+        token_json = token_res.json()
+        access_token = token_json.get("access_token")
 
-        if User.objects.filter(email=email).exists():
-            return Response({
-                'success': False,
-                'message': 'Email already registered'
-            }, status=status.HTTP_400_BAD_REQUEST)
+        if not access_token:
+            return Response({"error": "Failed to get GitHub token"}, status=400)
 
-        # Create user
-        user = User.objects.create(
-            username=username,
-            email=email,
-            password=make_password(password),
-            first_name=first_name,
-            last_name=last_name
-        )
+        # 2️⃣ Fetch user info
+        user_res = requests.get("https://api.github.com/user", headers={
+            "Authorization": f"token {access_token}"
+        })
+        user_json = user_res.json()
+        email = user_json.get("email") or f"{user_json['login']}@github.com"
 
-        # Generate JWT tokens
-        refresh = RefreshToken.for_user(user)
-        
-        return Response({
-            'success': True,
-            'message': 'Registration successful',
-            'access_token': str(refresh.access_token),
-            'refresh_token': str(refresh),
-            'user': {
-                'id': user.id,
-                'username': user.username,
-                'email': user.email,
-                'first_name': user.first_name,
-                'last_name': user.last_name,
-            }
-        }, status=status.HTTP_201_CREATED)
+        # 3️⃣ Create or get user in Django
+        user, created = User.objects.get_or_create(username=user_json["login"], defaults={"email": email})
+        token, _ = Token.objects.get_or_create(user=user)
 
-    except json.JSONDecodeError:
-        return Response({
-            'success': False,
-            'message': 'Invalid JSON data'
-        }, status=status.HTTP_400_BAD_REQUEST)
-    except Exception as e:
-        return Response({
-            'success': False,
-            'message': 'Registration failed'
-        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
-@api_view(['POST'])
-@permission_classes([IsAuthenticated])
-def logout_view(request):
-    """
-    Logout view that blacklists the refresh token
-    """
-    try:
-        refresh_token = request.data.get('refresh_token')
-        if refresh_token:
-            token = RefreshToken(refresh_token)
-            token.blacklist()
-        
-        return Response({
-            'success': True,
-            'message': 'Logout successful'
-        }, status=status.HTTP_200_OK)
-    except Exception as e:
-        return Response({
-            'success': False,
-            'message': 'Logout failed'
-        }, status=status.HTTP_400_BAD_REQUEST)
-
-@api_view(['GET'])
-@permission_classes([IsAuthenticated])
-def profile_view(request):
-    """
-    Get current user profile
-    """
-    user = request.user
-    return Response({
-        'success': True,
-        'user': {
-            'id': user.id,
-            'username': user.username,
-            'email': user.email,
-            'first_name': user.first_name,
-            'last_name': user.last_name,
-            'date_joined': user.date_joined,
-            'last_login': user.last_login,
-        }
-    }, status=status.HTTP_200_OK)
-
-@api_view(['PUT'])
-@permission_classes([IsAuthenticated])
-def update_profile_view(request):
-    """
-    Update user profile
-    """
-    try:
-        user = request.user
-        data = json.loads(request.body)
-        
-        # Update user fields
-        user.first_name = data.get('first_name', user.first_name)
-        user.last_name = data.get('last_name', user.last_name)
-        user.email = data.get('email', user.email)
-        
-        user.save()
-        
-        return Response({
-            'success': True,
-            'message': 'Profile updated successfully',
-            'user': {
-                'id': user.id,
-                'username': user.username,
-                'email': user.email,
-                'first_name': user.first_name,
-                'last_name': user.last_name,
-            }
-        }, status=status.HTTP_200_OK)
-        
-    except json.JSONDecodeError:
-        return Response({
-            'success': False,
-            'message': 'Invalid JSON data'
-        }, status=status.HTTP_400_BAD_REQUEST)
-    except Exception as e:
-        return Response({
-            'success': False,
-            'message': 'Profile update failed'
-        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
-
+        return Response({"token": token.key})
