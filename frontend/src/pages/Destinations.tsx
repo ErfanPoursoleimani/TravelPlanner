@@ -72,8 +72,8 @@ const Destinations = () => {
     const [isBudgetsOpen, setIsBudgetsOpen] = useState(false)
 
   return (
-    <div className="space-y-5 flex flex-col items-center">
-        <div className="text-black min-h-30 w-full flex flex-col justify-center items-center py-12 md:py-20 px-4 bg-gradient-to-b from-[#d2ffa8] to-[#348d4300]">
+    <div className="space-y-20 flex flex-col items-center">
+        <div className="text-black min-h-30 w-full flex flex-col justify-center items-center pt-20 px-4 bg-gradient-to-b from-[#d2ffa800] to-[#348d4300]">
           <div className="max-w-[1300px] w-full">
             <AnimatedBox animation="slideRight" triggerOnce={true} className="flex flex-col gap-5">
               <h1 className="text-5xl max-md:text-3xl font-bold">Explore Destinations</h1>
@@ -82,7 +82,7 @@ const Destinations = () => {
           </div>
         </div>
 
-      <div className="px-4 flex flex-wrap gap-3 max-md:flex-col md:justify-stretch max-w-[1300px] w-full">
+      <div className="max-xl:px-4 flex flex-wrap gap-3 max-md:flex-col md:justify-stretch max-w-[1300px] w-full">
         <div className="p-2 border-1 flex-1 rounded-[7px] bg-white border-neutral-200 flex items-center gap-3">
             <BiSearch className="text-[1.2rem] text-neutral-400"/>
             <input type="text" className="text-[0.9rem] flex-1 outline-0 ring-0" placeholder="Search destinations"/>
@@ -115,7 +115,7 @@ const Destinations = () => {
         </div>
       </div>
 
-      <div className="flex flex-wrap justify-center gap-3 p-3 max-w-[1300px]">
+      <div className="flex flex-wrap justify-center gap-3 p-3 px-5">
         {DestinationCards.map((card) => (
 					<DestinationCard card={card}/>
 				))}

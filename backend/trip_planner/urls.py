@@ -15,22 +15,32 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
-from apps.planner.views import views
-from apps.planner.views.views import GoogleLoginView, GitHubLoginView
-from apps.planner.views.views import ProtectedView
+from django.urls import path
+
+# Import your custom views properly
+from apps.planner.views.views import (
+    GoogleLoginView, 
+    GitHubLoginView, 
+    ProtectedView,
+    LogoutView,
+    UserProfileView
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('auth/login/', views.LoginView.as_view(), name='login'),
-    # path('auth/register/', views.register_view, name='register'),
-    # path('auth/logout/', views.logout_view, name='logout'),
     
-    path('auth/', include('dj_rest_auth.urls')),  
-    path('auth/registration/', include('dj_rest_auth.registration.urls')),
-    path('auth/social/', include('allauth.socialaccount.urls')), 
+    # Custom OAuth views (your implementation)
     path("auth/google/", GoogleLoginView.as_view(), name="google-login"),
     path("auth/github/", GitHubLoginView.as_view(), name="github-login"),
-
+    path('auth/logout/', LogoutView.as_view(), name='logout'),
+    path('auth/profile/', UserProfileView.as_view(), name='user_profile'),
+    
+    # Protected endpoint
     path("protected/", ProtectedView.as_view(), name="protected"),
+    
+    # traditional registration/login
+    
+    # path('auth/', include('dj_rest_auth.urls')),  
+    # path('auth/registration/', include('dj_rest_auth.registration.urls')),
+    # path('auth/social/', include('allauth.socialaccount.urls')), 
 ]

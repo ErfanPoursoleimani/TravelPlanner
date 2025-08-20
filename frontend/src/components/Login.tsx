@@ -12,9 +12,6 @@ export default function Login() {
     }
 
     try {
-      console.log("Token length:", credentialResponse.credential.length);
-      console.log("Token preview:", credentialResponse.credential.substring(0, 50) + "...");
-      
       const response = await axiosInstance.post("/auth/google/", {
         token: credentialResponse.credential,
       });

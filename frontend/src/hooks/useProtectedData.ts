@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import api from "../api/axiosInstance";
+import apiInstance from "../api/axiosInstance";
 
 export const useProtectedData = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    api.get("/protected/")
+    apiInstance.post("/protected/")
       .then((res) => setData(res.data))
       .catch((err) => console.error(err))
       .finally(() => setLoading(false));

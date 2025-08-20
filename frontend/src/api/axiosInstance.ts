@@ -19,15 +19,14 @@ function getCookie(name: string) {
 
 // Create axios instance
 const apiInstance = axios.create({
-    baseURL: 'http://localhost:8000',  // Django backend URL
-    withCredentials: true,             // Include cookies in requests
+    baseURL: 'http://127.0.0.1:8000',  
+    withCredentials: true,          
     headers: {
         'Content-Type': 'application/json',
     }
 });
 
-// Request interceptor to add CSRF token to every request
-apiInstance.interceptors.request.use(
+/* apiInstance.interceptors.request.use(
     (config) => {
         const csrfToken = getCookie('csrftoken');
         if (csrfToken) {
@@ -40,7 +39,6 @@ apiInstance.interceptors.request.use(
     }
 );
 
-// Optional: Response interceptor for error handling
 apiInstance.interceptors.response.use(
     (response) => response,
     (error) => {
@@ -49,6 +47,6 @@ apiInstance.interceptors.response.use(
         }
         return Promise.reject(error);
     }
-);
+); */
 
 export default apiInstance;

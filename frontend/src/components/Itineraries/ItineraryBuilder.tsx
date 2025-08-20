@@ -155,7 +155,7 @@ const ItineraryBuilder = () => {
       </div>
 
       <div className='space-y-2'>
-        { days.filter((day) => day.id === activeDay.id)[0].timeSlots.map((timeSlot) => (<TimeSlot days={days} activeDay={activeDay} setDays={setDays} timeSlot={timeSlot} />))}
+        { days.filter((day) => day.id === activeDay.id)[0].timeSlots.map((timeSlot) => (<TimeSlot key={timeSlot.id} days={days} activeDay={activeDay} setDays={setDays} timeSlot={timeSlot} />))}
         <div className='flex items-center'>
           <div className='relative flex-1 h-2 rounded-full bg-gray-200 flex justify-end'></div>
           <BiListPlus onClick={() => setIsAddingTimeSlot(!isAddingTimeSlot)} className='text-2xl'/>

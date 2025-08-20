@@ -43,4 +43,3 @@ GOOGLE_PLACES_API_KEY = os.environ.get('GOOGLE_PLACES_API_KEY')
 WEATHER_API_KEY = os.environ.get('WEATHER_API_KEY')
 BOOKING_API_KEY = os.environ.get('BOOKING_API_KEY')
 
-

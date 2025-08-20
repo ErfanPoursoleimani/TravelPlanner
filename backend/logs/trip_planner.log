@@ -117,3 +117,166 @@ Not Found: /accounts/login/
 "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
 "POST /admin/login/?next=/admin/ HTTP/1.1" 200 4341
 "POST /admin/login/?next=/admin/ HTTP/1.1" 200 4343
+Watching for file changes with StatReloader
+"OPTIONS /protected/ HTTP/1.1" 200 0
+"OPTIONS /protected/ HTTP/1.1" 200 0
+Forbidden: /protected/
+"GET /protected/ HTTP/1.1" 403 58
+Forbidden: /protected/
+"GET /protected/ HTTP/1.1" 403 58
+Forbidden: /protected/
+"GET /protected/ HTTP/1.1" 403 58
+Forbidden: /protected/
+"GET /protected/ HTTP/1.1" 403 58
+Forbidden: /protected/
+"GET /protected/ HTTP/1.1" 403 58
+Forbidden: /protected/
+"GET /protected/ HTTP/1.1" 403 58
+"OPTIONS /auth/google/ HTTP/1.1" 200 0
+Internal Server Error: /auth/google/
+"POST /auth/google/ HTTP/1.1" 500 98
+Forbidden: /protected/
+"GET /protected/ HTTP/1.1" 403 58
+Forbidden: /protected/
+"GET /protected/ HTTP/1.1" 403 58
+Forbidden: /protected/
+"GET /protected/ HTTP/1.1" 403 58
+Forbidden: /protected/
+"GET /protected/ HTTP/1.1" 403 58
+Forbidden: /protected/
+"GET /protected/ HTTP/1.1" 403 58
+Forbidden: /protected/
+"GET /protected/ HTTP/1.1" 403 58
+Forbidden: /protected/
+"GET /protected/ HTTP/1.1" 403 58
+Forbidden: /protected/
+"GET /protected/ HTTP/1.1" 403 58
+"OPTIONS /protected/ HTTP/1.1" 200 0
+"OPTIONS /protected/ HTTP/1.1" 200 0
+Forbidden: /protected/
+"GET /protected/ HTTP/1.1" 403 58
+Forbidden: /protected/
+"GET /protected/ HTTP/1.1" 403 58
+Forbidden: /protected/
+"GET /protected/ HTTP/1.1" 403 58
+Forbidden: /protected/
+"GET /protected/ HTTP/1.1" 403 58
+C:\Users\Erfan\Desktop\Dev\Webdev\react\travelPlanner\backend\trip_planner\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /protected/
+"GET /protected/ HTTP/1.1" 404 3027
+C:\Users\Erfan\Desktop\Dev\Webdev\react\travelPlanner\backend\trip_planner\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Forbidden: /protected/
+"GET /protected/ HTTP/1.1" 403 58
+Forbidden: /protected/
+"GET /protected/ HTTP/1.1" 403 58
+"OPTIONS /protected/ HTTP/1.1" 200 0
+"OPTIONS /protected/ HTTP/1.1" 200 0
+Forbidden: /protected/
+"GET /protected/ HTTP/1.1" 403 58
+Forbidden: /protected/
+"GET /protected/ HTTP/1.1" 403 58
+Forbidden: /protected/
+"GET /protected/ HTTP/1.1" 403 58
+Forbidden: /protected/
+"GET /protected/ HTTP/1.1" 403 58
+Forbidden: /protected/
+"GET /protected/ HTTP/1.1" 403 58
+Forbidden: /protected/
+"GET /protected/ HTTP/1.1" 403 58
+C:\Users\Erfan\Desktop\Dev\Webdev\react\travelPlanner\backend\apps\planner\views\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Erfan\Desktop\Dev\Webdev\react\travelPlanner\backend\apps\planner\views\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Erfan\Desktop\Dev\Webdev\react\travelPlanner\backend\trip_planner\settings\base.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Erfan\Desktop\Dev\Webdev\react\travelPlanner\backend\trip_planner\settings\base.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Erfan\Desktop\Dev\Webdev\react\travelPlanner\backend\trip_planner\settings\base.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Erfan\Desktop\Dev\Webdev\react\travelPlanner\backend\trip_planner\settings\base.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Erfan\Desktop\Dev\Webdev\react\travelPlanner\backend\trip_planner\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Erfan\Desktop\Dev\Webdev\react\travelPlanner\backend\apps\planner\views\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Erfan\Desktop\Dev\Webdev\react\travelPlanner\backend\trip_planner\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Erfan\Desktop\Dev\Webdev\react\travelPlanner\backend\trip_planner\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Erfan\Desktop\Dev\Webdev\react\travelPlanner\backend\trip_planner\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Erfan\Desktop\Dev\Webdev\react\travelPlanner\backend\apps\planner\views\views.py changed, reloading.
+Watching for file changes with StatReloader
+Forbidden: /protected/
+Forbidden: /protected/
+"POST /protected/ HTTP/1.1" 403 58
+"POST /protected/ HTTP/1.1" 403 58
+Forbidden: /protected/
+Forbidden: /protected/
+"POST /protected/ HTTP/1.1" 403 58
+"POST /protected/ HTTP/1.1" 403 58
+Forbidden: /protected/
+"POST /protected/ HTTP/1.1" 403 58
+Forbidden: /protected/
+"POST /protected/ HTTP/1.1" 403 58
+"OPTIONS /auth/google/ HTTP/1.1" 200 0
+Internal Server Error: /auth/google/
+"POST /auth/google/ HTTP/1.1" 500 57
+Forbidden: /protected/
+Forbidden: /protected/
+"POST /protected/ HTTP/1.1" 403 58
+"POST /protected/ HTTP/1.1" 403 58
+Forbidden: /protected/
+Forbidden: /protected/
+"POST /protected/ HTTP/1.1" 403 58
+"POST /protected/ HTTP/1.1" 403 58
+Forbidden: /protected/
+Forbidden: /protected/
+"POST /protected/ HTTP/1.1" 403 58
+"POST /protected/ HTTP/1.1" 403 58
+Forbidden: /protected/
+Forbidden: /protected/
+"POST /protected/ HTTP/1.1" 403 58
+"POST /protected/ HTTP/1.1" 403 58
+Forbidden: /protected/
+Forbidden: /protected/
+"POST /protected/ HTTP/1.1" 403 58
+"POST /protected/ HTTP/1.1" 403 58
+Forbidden: /protected/
+Forbidden: /protected/
+"POST /protected/ HTTP/1.1" 403 58
+"POST /protected/ HTTP/1.1" 403 58
+Forbidden: /protected/
+Forbidden: /protected/
+"POST /protected/ HTTP/1.1" 403 58
+"POST /protected/ HTTP/1.1" 403 58
+Forbidden: /protected/
+Forbidden: /protected/
+"POST /protected/ HTTP/1.1" 403 58
+"POST /protected/ HTTP/1.1" 403 58
+Forbidden: /protected/
+Forbidden: /protected/
+"POST /protected/ HTTP/1.1" 403 58
+"POST /protected/ HTTP/1.1" 403 58
+Internal Server Error: /auth/google/
+"POST /auth/google/ HTTP/1.1" 500 57
+C:\Users\Erfan\Desktop\Dev\Webdev\react\travelPlanner\backend\trip_planner\settings\dev.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /auth/google/
+"POST /auth/google/ HTTP/1.1" 500 57
+C:\Users\Erfan\Desktop\Dev\Webdev\react\travelPlanner\backend\trip_planner\settings\dev.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Erfan\Desktop\Dev\Webdev\react\travelPlanner\backend\trip_planner\settings\base.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Erfan\Desktop\Dev\Webdev\react\travelPlanner\backend\apps\planner\views\views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /auth/google/
+"POST /auth/google/ HTTP/1.1" 500 49
+C:\Users\Erfan\Desktop\Dev\Webdev\react\travelPlanner\backend\apps\planner\views\views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /auth/google/
+"POST /auth/google/ HTTP/1.1" 500 57
+C:\Users\Erfan\Desktop\Dev\Webdev\react\travelPlanner\backend\apps\planner\views\views.py changed, reloading.
+Watching for file changes with StatReloader

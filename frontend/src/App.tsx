@@ -11,7 +11,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Profile from './pages/Profile';
 
 function App() {
-  return <div>Hello Vite!</div>;
+  // return <div>Hello Vite!</div>;
   return (
     <Router>
       <div className="bg-gray-50 select-none">
