@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
-import { NotFound } from './pages/NotFound';
+// import { NotFound } from './pages/NotFound';
 import Navbar from './components/Nav/Navbar';
 import MobileNavbar from './components/Nav/MobileNavbar';
 import Destinations from './pages/Destinations';
@@ -38,7 +38,6 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/destinations" element={<Destinations />} />
             <Route path="/map" element={<Map />} />
-            <Route path="/profile" element={<NotFound />} />
           </Routes>
         </main>
         <MobileNavbar />

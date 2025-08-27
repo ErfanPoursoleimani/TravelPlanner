@@ -26,7 +26,7 @@ const apiInstance = axios.create({
     }
 });
 
-/* apiInstance.interceptors.request.use(
+apiInstance.interceptors.request.use(
     (config) => {
         const csrfToken = getCookie('csrftoken');
         if (csrfToken) {
@@ -47,6 +47,6 @@ apiInstance.interceptors.response.use(
         }
         return Promise.reject(error);
     }
-); */
+);
 
 export default apiInstance;

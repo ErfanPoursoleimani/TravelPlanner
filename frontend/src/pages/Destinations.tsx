@@ -115,7 +115,7 @@ const Destinations = () => {
         </div>
       </div>
 
-      <div className="flex flex-wrap justify-center gap-3 p-3 px-5">
+      <div className="w-full flex flex-wrap max-md:flex-col md:justify-center gap-3 p-3 px-5">
         {DestinationCards.map((card) => (
 					<DestinationCard card={card}/>
 				))}

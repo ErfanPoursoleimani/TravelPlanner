@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import authSlice from './slices/authSlice'
+import dataSlice from './slices/dataSlice'
 // import userSlice from './slices/userSlice'
 // store/index.js - Make sure you have this export
 import { persistStore } from 'redux-persist'
@@ -9,6 +10,7 @@ import { persistStore } from 'redux-persist'
 export const store = configureStore({
     reducer: {
         auth: authSlice,
+        data: dataSlice,
         // user: userSlice,
     },
 })

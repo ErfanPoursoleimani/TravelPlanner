@@ -1,4 +1,4 @@
-import React from 'react';
+/* import React from 'react';
 
 interface LazyComponentProps {
   title?: string;
@@ -24,4 +24,4 @@ const LazyComponent: React.FC<LazyComponentProps> = ({
   );
 };
 
-export default LazyComponent;
+export default LazyComponent; */

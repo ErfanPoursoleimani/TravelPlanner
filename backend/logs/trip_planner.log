@@ -280,3 +280,72 @@ Internal Server Error: /auth/google/
 "POST /auth/google/ HTTP/1.1" 500 57
 C:\Users\Erfan\Desktop\Dev\Webdev\react\travelPlanner\backend\apps\planner\views\views.py changed, reloading.
 Watching for file changes with StatReloader
+Internal Server Error: /auth/google/
+"POST /auth/google/ HTTP/1.1" 500 49
+Forbidden: /protected/
+Forbidden: /protected/
+"POST /protected/ HTTP/1.1" 403 58
+"POST /protected/ HTTP/1.1" 403 58
+Forbidden: /protected/
+Forbidden: /protected/
+"POST /protected/ HTTP/1.1" 403 58
+"POST /protected/ HTTP/1.1" 403 58
+Forbidden: /protected/
+"POST /protected/ HTTP/1.1" 403 58
+Forbidden: /protected/
+"POST /protected/ HTTP/1.1" 403 58
+Forbidden: /protected/
+Forbidden: /protected/
+"POST /protected/ HTTP/1.1" 403 58
+"POST /protected/ HTTP/1.1" 403 58
+Forbidden: /protected/
+Forbidden: /protected/
+"POST /protected/ HTTP/1.1" 403 58
+"POST /protected/ HTTP/1.1" 403 58
+Forbidden: /protected/
+Forbidden: /protected/
+"POST /protected/ HTTP/1.1" 403 58
+"POST /protected/ HTTP/1.1" 403 58
+Forbidden: /protected/
+Forbidden: /protected/
+"POST /protected/ HTTP/1.1" 403 58
+"POST /protected/ HTTP/1.1" 403 58
+Not Found: /graphql/
+"GET /graphql/ HTTP/1.1" 404 3075
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3084
+Not Found: /
+"GET / HTTP/1.1" 404 3033
+Not Found: /
+"GET / HTTP/1.1" 404 3033
+Not Found: /
+"GET / HTTP/1.1" 404 3033
+Watching for file changes with StatReloader
+Not Found: /
+"GET / HTTP/1.1" 404 2720
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 2771
+C:\Users\Erfan\Desktop\Dev\Webdev\react\travelPlanner\backend\trip_planner\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Erfan\Desktop\Dev\Webdev\react\travelPlanner\backend\trip_planner\settings\base.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Erfan\Desktop\Dev\Webdev\react\travelPlanner\backend\trip_planner\settings\dev.py changed, reloading.
+Watching for file changes with StatReloader
+Forbidden: /protected/
+Forbidden: /protected/
+"POST /protected/ HTTP/1.1" 403 58
+"POST /protected/ HTTP/1.1" 403 58
+Forbidden: /protected/
+Forbidden: /protected/
+"POST /protected/ HTTP/1.1" 403 58
+"POST /protected/ HTTP/1.1" 403 58
+Forbidden: /protected/
+"POST /protected/ HTTP/1.1" 403 58
+Forbidden: /protected/
+Forbidden: /protected/
+"POST /protected/ HTTP/1.1" 403 58
+"POST /protected/ HTTP/1.1" 403 58
+"OPTIONS /auth/google/ HTTP/1.1" 200 0
+Internal Server Error: /auth/google/
+"POST /auth/google/ HTTP/1.1" 500 49
+Watching for file changes with StatReloader
