@@ -34,8 +34,8 @@ const AddTimeSlot = ({setDays, days, activeDay, setIsAddingTimeSlot, isAddingTim
         }
     }
 
-    const handleAddTimeSlot = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        if (event.key === 'Enter') {
+    const handleAddTimeSlot = (event?: React.KeyboardEvent<HTMLInputElement> | null) => {
+        if (event && event.key === 'Enter' || !event) {
             setDays([
                 ...days.filter((day) => (day.id !== activeDay.id)), 
                 {
@@ -62,13 +62,14 @@ const AddTimeSlot = ({setDays, days, activeDay, setIsAddingTimeSlot, isAddingTim
             <div className='flex justify-between items-center'>
             <span className='flex gap-2 items-center'>
                 <FaRegClock />
-                <input onKeyDown={handleAddTimeSlot} value={selectedHour} onChange={(e) => handleInputValue(e)} ref={inputRef} type="text" className='bg-white w-15 px-2 min-h-10 border-1 rounded-[7px] outline-0 border-gray-200 font-medium'/>
+                <input onKeyDown={handleAddTimeSlot} value={selectedHour} onChange={(e) => handleInputValue(e)} ref={inputRef} type="number" className='bg-white decoration-0 w-20 px-2 min-h-10 border-1 rounded-[7px] outline-0 border-gray-200 font-medium'/>
                 <ul className='flex gap-1'>
                     <li onClick={() => setSelectedTimeMode("AM")} className={`${selectedTimeMode === "AM" ? "bg-black border-0 text-white" : ""} px-2 py-1 border-1 font-medium text-[0.9rem] rounded-[5px] border-gray-300`}>AM</li>
                     <li onClick={() => setSelectedTimeMode("PM")} className={`${selectedTimeMode === "PM" ? "bg-black border-0 text-white" : ""} px-2 py-1 border-1 font-medium text-[0.9rem] rounded-[5px] border-gray-300`}>PM</li>
                 </ul>
             </span>
             <span className='flex items-center space-x-5'>
+                <button onClick={() => handleAddTimeSlot(null)} className='font-medium border-1 border-white bg-black text-white py-1 px-2 rounded-[7px]'>create</button>
                 <FaXmark onClick={() => setIsAddingTimeSlot(false)} className='text-[1.5rem]'/>
             </span>
             </div>
